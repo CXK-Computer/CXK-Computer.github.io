@@ -1,40 +1,399 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Clash Main By Qszx</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Clash 配置中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            background-image: linear-gradient(45deg, #2c2c2c 25%, transparent 25%),
+                            linear-gradient(-45deg, #2c2c2c 25%, transparent 25%),
+                            linear-gradient(45deg, transparent 75%, #2c2c2c 75%),
+                            linear-gradient(-45deg, transparent 75%, #2c2c2c 75%);
+            background-size: 20px 20px;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
+        }
+
+        h1 {
+            color: #00b4d8;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(40, 40, 40, 0.9);
+            border-radius: 10px;
+            border-left: 4px solid #00b4d8;
+        }
+
+        .link-list {
+            counter-reset: link-counter;
+        }
+
+        .link-item {
+            position: relative;
+            padding: 15px 20px 15px 45px;
+            margin: 15px 0;
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .link-item::before {
+            counter-increment: link-counter;
+            content: counter(link-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: #00b4d8;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-weight: bold;
+        }
+
+        .link-item:hover {
+            transform: translateX(10px);
+            box-shadow: 3px 3px 10px rgba(0, 180, 216, 0.3);
+        }
+
+        .link-item a {
+            color: #90e0ef;
+            text-decoration: none;
+            font-size: 1.1em;
+            word-break: break-all;
+        }
+
+        .link-item a:hover {
+            color: #00b4d8;
+            text-decoration: underline;
+        }
+
+        .auth-info {
+            background: #002b36;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            border: 1px solid #004d66;
+        }
+
+        #music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+        }
+
+        audio {
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        audio:hover {
+            width: 250px;
+        }
+
+        .section-title {
+            color: #00d4a0;
+            margin: 20px 0 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #0077ff;
+            padding-bottom: 5px;
+        }
+
+        .image-gallery {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-gallery img {
+            width: 300px;
+            height: 180px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .game-section {
+            background: rgba(40, 40, 40, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .game-inputs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .game-inputs input {
+            padding: 12px;
+            border: 2px solid #00b4d8;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        #check-btn {
+            background: #00b4d8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #check-btn:hover {
+            background: #0096c7;
+            transform: scale(1.05);
+        }
+
+        #game-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.1em;
+            min-height: 40px;
+        }
+    </style>
 </head>
-<style type="text/css">
-ol，ul{
-display:block;
-list-style-type:none;
-margin:3px;
-}
-</style><body>
-<div><ol><li type ="1" value="1"><font style ="font-size:115.0%;">https://clashxhub.com/apps/cmfa-2.10.1-meta-universal-release.apk</font><br>
-</li></ol><ol><li type ="1" value="2"><font style ="font-size:115.0%;">https://github.com/snakem982/proxypool</font><font style ="font-size:115.0%;">/</font><br>
-</li></ol><ol><li type ="1" value="3"><font style ="font-size:115.0%;">https://clashgithub.com</font><font style ="font-size:115.0%;">/</font><br>
-</li></ol><ol><li type ="1" value="4"><font style ="font-size:115.0%;">https://raw.hellogithub.com/hosts</font><br>
-</li></ol><ol><li type ="1" value="5"><font style ="font-size:115.0%;">https://clash.qszx.us.kg/qszx?clash</font><br>
-</li></ol><ol><li type ="1" value="6"><font style ="font-size:115.0%;">https://jsdelivr.pai233.top/gh/snakem982/proxypool@main/source/clash-meta.yaml</font><br>
-</li></ol><ol><li type ="1" value="7"><font style ="font-size:115.0%;">https://jsdelivr.pai233.top/gh/ermaozi/get_subscribe@main/subscribe/clash.yml</font><br>
-</li></ol><ol><li type ="1" value="8"><font style ="font-size:115.0%;">https://robin.nscl.ir</font><font style ="font-size:115.0%;">/</font><br>
-</li></ol><ol><li type ="1" value="9"><font style ="font-size:115.0%;">https://github.com/chen08209/FlClash</font></li></ol></div><div><br/><img style="width: 100%;height:auto;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+YAAAPmCAYAAABpYIUnAAAAAXNSR0IArs4c6QAAAARzQklUCAgI
-CHwIZIgAACAASURBVHicbL1Lr65bdh70jDHfb619zilX2Y4t27ESm4RA0kFCQvQQAeHQoQP9OH+l
-upAfQJc+LaCJkgYNxEVKpMRKUBScK7ZRGZcrrsvea31zDBrP84z5rmPvUp19Wd/3vnOOOS7PuM74
-6//132lEo7HRCOC68N3vfYOuQkQACBQKCP6+C+gGAglUA/wIEI1AAwC6A/wffzWAQqE6sLARkUCn
-Pl8ILFQ3Vga6AxkAUAAWgI1uYCWwuQxAT2+Uft9aK98N+Dk97wcSga0/8+9AIRroCACNikT6G5Xo
-ANAbmUD1QqK1N6DRWswTAN9VxWdFBKK5u4bp0lqr3x1AN38eTdrkBjoBJM8CG4FAIUjBDqwAukmb
-xiYtovXcAHQk950HGhGBaqCxALT2qX0gEFGiW4tW/HtFILr0b/6GaB+JRKE69S7ucNYSe9ij2txA
-+nRrfVFabwLtMz+rD70vb+/2yiMahUT0+cz5efFt0eIJ883t6XF7WvtctN7ZSyCx0ZFAn2fHUOi2
-Pr8rCtHBv2P54bd36xnxZ73bFNRzg7T3ufDd+a13N5qM/OHZ1YkIysTwNQIdFGL+zCvzHijWwO1c
-wHf3/C1E/wTaMuVzK8pCp/axkKjhe8tqotCSET7nRpvow/V32mi9DaA7kfGk3Iv/qsmTpW8cviG1
-EDX6ZTf5uS3Gw1Ub2QHkeZe1DXVhI7AQeN54zW8LcV0PPf/UuaBQvciXEcg+PGt9FlrnUa49q7vT
-gTzsfRzJ43k/gcihHe4co+/n8FrMzykvOZJy/2/rkCI/8qwPj/JInuX6G+glGT97qRulzv5u+47Q
-IXOzMTwh/u0enrEuiWigi59JylzovPjdQCNQzT1ajlpWgWsmH5fsQTd5MDPR1cgEtp4bDWQEugsp
-2Xjb78hMVAFvP/2M5/MNr1+9cq3inOhGNTkzM/HyuPDIV1QX1kpUUydaT1ZxHdWHponA+5cvQAG5
-QscgLoo45xKLsnaRRlc2usF35UPfoe1NNHYDGUD3lhxffF8X3t+e+Pz5MxDAy+MVkYkM4FmFbq6x
+<body>
+    <div class="container">
+        <h1>🔗 Clash 配置中心</h1>
+
+        <!-- 图片展示 -->
+        <div class="image-gallery">
+            <img src="https://s21.ax1x.com/2025/02/28/pE8Nr9K.md.png" alt="Network Diagram">
+            <img src="https://s21.ax1x.com/2025/02/28/pE8Ns1O.jpg" alt="Security Illustration">
+            <img src="https://s21.ax1x.com/2025/02/28/pE8N44P.png" alt="Configuration Demo">
+        </div>
+
+        <!-- 链接列表 -->
+        <div class="content-section">
+            <h2 class="section-title">资源链接</h2>
+            <div class="link-list">
+                <div class="link-item">
+                    <a href="https://clashxhub.com/apps/cmfa-2.10.1-meta-universal-release.apk">
+                        Clash Meta 客户端下载
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://github.com/snakem982/proxypool/">
+                        Proxypool 项目主页
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://clashgithub.com/">
+                        Clash Github 镜像站
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://raw.hellogithub.com/hosts">
+                        GitHub 加速Hosts
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://clash.qszx.us.kg/qszx?clash">
+                        在线配置生成器
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://jsdelivr.pai233.top/gh/snakem982/proxypool@main/source/clash-meta.yaml">
+                        Clash Meta 配置源
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://jsdelivr.pai233.top/gh/ermaozi/get_subscribe@main/subscribe/clash.yml">
+                        订阅链接集合
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://robin.nscl.ir/">
+                        Robin 节点服务
+                    </a>
+                </div>
+                <div class="link-item">
+                    <a href="https://github.com/chen08209/FlClash">
+                        FlClash 客户端
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 认证信息 -->
+        <div class="content-section">
+            <h2 class="section-title">认证信息</h2>
+            <div class="auth-info">
+Github 2FA
+2f973-9d1f1
+8e37c-2c1e6
+fa99a-cff66
+fd62f-6281f
+25ad5-07205
+b6abb-bb1f3
+4a9fd-192e1
+bf187-b66d9
+72e78-a0bbb
+26347-10645
+8feac-15e5e
+578e7-fb8c2
+fbf73-d965c
+163fc-deb1e
+82198-ca6a1
+768ec-de9e7
+
+牢软PW：2bqszxsbfw
+X回复码：5biy6siheuaj
+            </div>
+        </div>
+
+        <!-- 24点游戏 -->
+        <div class="game-section">
+            <h2 class="section-title">🎮 24点小游戏</h2>
+            <div class="game-inputs">
+                <input type="number" placeholder="数字1" min="1" max="9">
+                <input type="number" placeholder="数字2" min="1" max="9">
+                <input type="number" placeholder="数字3" min="1" max="9">
+                <input type="number" placeholder="数字4" min="1" max="9">
+            </div>
+            <button id="check-btn">验证解法</button>
+            <div id="game-result"></div>
+        </div>
+    </div>
+
+    <!-- 音乐播放器 -->
+    <div id="music-player">
+        <audio controls autoplay loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/11/14/audio_4d9c1f0d34.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
+    </div>
+
+    <script>
+        // 24点游戏逻辑
+        document.getElementById('check-btn').addEventListener('click', function() {
+            const inputs = document.querySelectorAll('.game-inputs input');
+            const numbers = Array.from(inputs).map(input => Number(input.value));
+            
+            if (numbers.some(num => !num || num < 1 || num > 9)) {
+                showResult('请输入4个1-9的数字！', 'red');
+                return;
+            }
+
+            const solutions = solve24(numbers);
+            if (solutions.length > 0) {
+                showResult(`找到解法：${solutions[0]}`, '#00b4d8');
+            } else {
+                showResult('无解，请尝试其他数字组合', '#ff5555');
+            }
+        });
+
+        function showResult(text, color) {
+            const resultDiv = document.getElementById('game-result');
+            resultDiv.style.color = color;
+            resultDiv.innerHTML = text;
+        }
+
+        function solve24(numbers) {
+            const ops = ['+', '-', '*', '/'];
+            const solutions = [];
+            
+            // 递归生成所有可能的表达式
+            function generateExpressions(nums, exp) {
+                if (nums.length === 1) {
+                    if (Math.abs(nums[0] - 24) < 0.001) {
+                        solutions.push(exp);
+                    }
+                    return;
+                }
+
+                for (let i = 0; i < nums.length; i++) {
+                    for (let j = 0; j < nums.length; j++) {
+                        if (i === j) continue;
+                        const remaining = nums.filter((_, index) => index !== i && index !== j);
+                        
+                        for (const op of ops) {
+                            let newNum, newExp;
+                            if (op === '+') {
+                                newNum = nums[i] + nums[j];
+                                newExp = `(${exp[i]} + ${exp[j]})`;
+                            } else if (op === '-') {
+                                newNum = nums[i] - nums[j];
+                                newExp = `(${exp[i]} - ${exp[j]})`;
+                            } else if (op === '*') {
+                                newNum = nums[i] * nums[j];
+                                newExp = `(${exp[i]} × ${exp[j]})`;
+                            } else {
+                                if (nums[j] === 0) continue;
+                                newNum = nums[i] / nums[j];
+                                newExp = `(${exp[i]} ÷ ${exp[j]})`;
+                            }
+                            
+                            generateExpressions(
+                                [...remaining, newNum],
+                                [...remaining.map(e => exp.indexOf(e) < i && exp.indexOf(e) < j ? e : null), newExp]
+                            );
+                        }
+                    }
+                }
+            }
+
+            generateExpressions(numbers, numbers.map(n => n.toString()));
+            return solutions;
+        }
+    </script>
+</body>
+</html>QscgLoo45xKLsnaRRlc2usF35UPfoe1NNHYDGUD3lhxffF8X3t+e+Pz5MxDAy+MVkYkM4FmFbq6x
 i7RZK/C4QrIZ+PL5M64rgbwIGfJCJHBFABnY2FhroZ5veH28IuLCs60DG1UFxMLuwPP5ji4gV6Kw
 xeONpMLDft94fX3grRvdGysS3eD3emNdS3QsZPMcn2hkBroCu554rCXbTM2VCfLc6EJ+f1fhunje
 KwB03GQTyATQxbVWjB2MqPMYNHo3Io+uRjSiQV7IQEciijo+rFe7kNnoXjL7CZQAUlDKvJDqRsaa
