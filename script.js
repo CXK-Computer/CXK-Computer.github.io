@@ -1,6 +1,6 @@
 /* START OF FILE script.js */
 
-document.addEventListener('DOMContentLoaded', () => {
+document。addEventListener('DOMContentLoaded', () => {
 
     // --- Particle Effects ---
     const particlesContainer = document.getElementById('particles-js');
@@ -73,6 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     console.warn("particles.js library not loaded.");
   }
+if (window.innerWidth <= 768) {
+        // Example: If snow script adds a canvas with id="snow-canvas"
+        const snowCanvas = document.getElementById('snow-canvas');
+        if (snowCanvas) snowCanvas.style.display = 'none';
+
+        // Example: If Live2D widget has a hide method (check its documentation)
+        // if (window.L2Dwidget && typeof window.L2Dwidget.hide === 'function') {
+        //     window.L2Dwidget.hide();
+        // }
+
+        // Or add a class to body to control via CSS
+        document.body.classList.add('disable-heavy-scripts');
+    }
+    */
 
 
   // --- Clock, Greeting, and Dark Mode ---
