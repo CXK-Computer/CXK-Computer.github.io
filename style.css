@@ -1,352 +1,465 @@
 /* START OF FILE style.css */
 
-/* Dynamic background particles (Placeholder comment, handled by JS library) */
-#particles-js {
-  position: fixed; /* Changed from absolute to fixed for consistent background */
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
+/* --- Variables --- */
 :root {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
-  --accent-color: #00b4d8;
-  --section-bg: rgba(40, 40, 40, 0.9);
-  --link-hover-color: #0077ff; /* Added variable for consistency */
-  --image-shadow-color: rgba(0, 180, 216, 0.3);
-  --error-color: #ff5555; /* Added variable */
+  --bg-color: #1f1f23; /* Slightly lighter dark */
+  --text-color: #e4e4e7; /* Slightly brighter text */
+  --text-color-muted: #a0a0a5; /* For less important text */
+  --accent-color: #00aef9; /* Slightly brighter cyan */
+  --accent-gradient: linear-gradient(45deg, #00aef9, #00d4a0);
+  --section-bg: rgba(38, 38, 42, 0.85); /* Darker, slightly less transparent */
+  --section-border-radius: 12px; /* Consistent rounding */
+  --content-max-width: 850px; /* Slightly wider */
+  --shadow-color-light: rgba(0, 174, 249, 0.15);
+  --shadow-color-dark: rgba(0, 0, 0, 0.3);
+  --error-color: #ff6b6b;
+  --success-color: #51cf66;
+  --font-primary: 'Poppins', sans-serif;
+  --font-code: 'Fira Code', monospace;
 }
 
 .dark-mode {
-  --bg-color: #0a0a0a;
-  --text-color: #c0c0c0;
-  --accent-color: #0088cc;
-  --section-bg: rgba(20, 20, 20, 0.95);
-  --link-hover-color: #0055cc; /* Dark mode adjustment */
-  --image-shadow-color: rgba(0, 136, 204, 0.3); /* Dark mode adjustment */
+  /* Dark mode can have slightly different nuances if needed, */
+  /* but for this theme, the base vars work well for both day/night */
+  --bg-color: #18181b;
+  --text-color: #d4d4d8;
+  --text-color-muted: #909095;
+  --section-bg: rgba(24, 24, 27, 0.9);
+  --shadow-color-light: rgba(0, 174, 249, 0.2);
 }
 
+/* --- Reset & Base --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  transition: background-color 0.5s ease, color 0.5s ease; /* Optimized transition properties */
+  font-family: var(--font-primary);
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for any anchor links */
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.6;
-  padding: 20px;
-  /* Subtle geometric background pattern */
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-                    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
-                    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
-                    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
-  background-size: 20px 20px;
-  padding-bottom: 150px; /* Adjusted padding */
-  min-height: 100vh; /* Ensure body takes full viewport height */
-  position: relative; /* Needed for particle js z-index */
-  overflow-x: hidden; /* Prevent horizontal scrollbars */
+  line-height: 1.7; /* Slightly increased line height */
+  padding: 25px;
+  /* Softer background pattern */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 15px 15px;
+  padding-bottom: 180px;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-header, main, footer {
-  max-width: 800px;
-  margin: 20px auto;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 30px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari prefix */
-  box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
-  position: relative; /* Ensure content is above particles */
+/* --- Particle Background --- */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.7; /* Slightly less prominent particles */
+}
+
+/* --- Layout Containers --- */
+header, main, footer, #time-container {
+  max-width: var(--content-max-width);
+  margin: 25px auto; /* Consistent vertical margin */
+  background: var(--section-bg);
+  padding: 35px; /* Increased padding */
+  border-radius: var(--section-border-radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light); /* Softer, layered shadow */
+  position: relative;
   z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
 }
 
+/* --- Header --- */
 header h1 {
   color: var(--accent-color);
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 2.5em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 25px;
+  font-size: 2.8em; /* Slightly larger */
+  font-weight: 600;
+  letter-spacing: 1px; /* Add some spacing */
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background: var(--accent-gradient); /* Apply gradient to text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent; /* Standard property */
 }
 
+/* --- Time Container --- */
 #time-container {
-  text-align: center;
-  margin: 20px auto; /* Center horizontally */
-  padding: 15px;
-  background: var(--section-bg);
-  border-radius: 10px;
-  max-width: 800px; /* Match main content width */
-  position: relative; /* Ensure content is above particles */
-  z-index: 1;
+  padding: 20px; /* Adjusted padding */
+  margin-top: 0; /* Align with top */
 }
-
 #current-time {
-  font-size: 2em;
+  font-size: 2.2em;
   color: var(--accent-color);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
-
 #time-notice {
-    font-size: 1em; /* Adjusted size */
-    min-height: 1.2em; /* Prevent layout shift */
+  font-size: 1.1em;
+  color: var(--text-color-muted);
+  min-height: 1.3em;
 }
 
+/* --- Content Sections --- */
 .content-section {
-  margin: 25px 0;
-  padding: 20px;
-  background: var(--section-bg);
-  border-radius: 10px;
-  border-left: 4px solid var(--accent-color);
+  margin: 35px 0; /* Increased spacing */
+  padding: 25px;
+  background: rgba(0,0,0, 0.1); /* Subtle inner background */
+  border-radius: 10px; /* Slightly smaller radius inside */
+  border-left: 5px solid;
+  border-image: var(--accent-gradient) 1; /* Gradient border */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* Inner shadow */
 }
 
 .section-title {
-  color: #00d4a0; /* Keeping unique color */
-  margin-bottom: 15px;
-  font-size: 1.3em;
-  border-bottom: 2px solid var(--link-hover-color);
-  padding-bottom: 5px;
+  color: var(--accent-color); /* Match accent */
+  margin-bottom: 20px;
+  font-size: 1.6em; /* Larger titles */
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Subtle underline */
+  display: inline-block; /* Prevent underline spanning full width */
 }
 
+/* --- Link List --- */
 .link-list {
   counter-reset: link-counter;
-  list-style: none; /* Remove default list styling if considered a list */
+  list-style: none;
 }
 
 .link-item {
   position: relative;
-  padding: 15px 20px 15px 45px;
-  margin: 15px 0;
-  background: rgba(30, 30, 30, 0.9);
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Optimized transition */
+  padding: 18px 25px 18px 60px; /* Increased padding */
+  margin: 18px 0;
+  background: rgba(40, 40, 45, 0.9); /* Slightly adjusted bg */
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+  overflow: hidden; /* Ensure pseudo-elements don't overflow */
 }
 
-.link-item::before {
+.link-item::before { /* Counter styling */
   counter-increment: link-counter;
   content: counter(link-counter);
   position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 25px;
-  height: 25px;
-  background: var(--accent-color);
+  left: 0; /* Align to the left edge */
+  top: 0;
+  bottom: 0;
+  width: 45px; /* Wider counter area */
+  background: var(--accent-gradient); /* Gradient background */
   color: #fff;
-  border-radius: 50%;
-  display: flex; /* Use flex for centering */
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 0.9em; /* Slightly smaller font */
+  font-weight: 600;
+  font-size: 1.1em;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition: width 0.3s ease-in-out;
 }
 
 .link-item:hover {
-  transform: translateX(5px); /* Reduced hover effect slightly */
-  box-shadow: 3px 3px 10px var(--image-shadow-color);
+  transform: translateX(8px) scale(1.02); /* Add subtle scale */
+  background-color: rgba(50, 50, 55, 0.95);
+  box-shadow: 5px 5px 15px var(--shadow-color-dark);
+}
+
+.link-item:hover::before {
+   width: 50px; /* Expand counter slightly on hover */
 }
 
 .link-item a {
-  color: #90e0ef;
+  color: #ade8f4; /* Slightly different link color */
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1.15em;
+  font-weight: 400; /* Normal weight for links */
   word-break: break-all;
   transition: color 0.3s ease;
+  position: relative;
+  z-index: 1; /* Ensure link text is above potential background effects */
 }
 
 .link-item a:hover,
-.link-item a:focus { /* Added focus state for accessibility */
-  color: var(--accent-color);
-  text-decoration: underline;
+.link-item a:focus {
+  color: #fff; /* Brighter hover color */
+  text-decoration: none; /* Keep no underline */
 }
 
+/* --- Auth Info Block --- */
 .auth-info {
-  background: #002b36;
-  padding: 20px;
-  border-radius: 8px;
-  margin: 25px 0;
-  font-family: 'Fira Code', monospace; /* Keep specific font */
+  background: #001f29; /* Darker code background */
+  padding: 25px;
+  border-radius: 10px;
+  margin: 35px 0;
+  font-family: var(--font-code);
   white-space: pre-wrap;
-  word-wrap: break-word; /* Ensure long lines wrap */
-  border: 1px solid #004d66;
-  color: #eee; /* Ensure readability on dark bg */
-  font-size: 0.9em; /* Slightly smaller for code */
-  overflow-x: auto; /* Add scroll if needed */
+  word-wrap: break-word;
+  border: 1px solid #00415a;
+  color: #c3dce8; /* Lighter code text */
+  font-size: 0.95em;
+  overflow-x: auto;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+.auth-info code { /* Explicitly style code tag if used */
+    display: block; /* Ensure block behavior */
 }
 
+/* --- Image Gallery --- */
 .image-gallery {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid; /* Use grid for better control */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  margin: 30px 0;
 }
 
 .image-gallery img {
-  max-width: 300px; /* Use max-width for responsiveness */
-  width: 100%; /* Allow shrinking */
-  height: 180px;
+  width: 100%; /* Grid handles width */
+  height: 200px; /* Increased height */
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0 4px 10px var(--image-shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: block; /* Remove extra space below image */
+  box-shadow: 0 5px 15px var(--shadow-color-dark);
+  transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out, filter 0.35s ease;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
 }
 
 .image-gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px var(--image-shadow-color); /* Enhance shadow on hover */
+  transform: scale(1.05) rotate(1deg); /* Slight rotation on hover */
+  box-shadow: 0 8px 25px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light);
+  filter: brightness(1.1); /* Slight brightness increase */
 }
 
+/* --- Game Section --- */
 .game-section {
-  background: var(--section-bg);
-  padding: 20px;
-  border-radius: 10px;
-  margin: 25px 0;
+  background: var(--section-bg); /* Match main section background */
+  padding: 30px;
+  border-radius: var(--section-border-radius);
+  margin: 35px 0;
+  border: none; /* Remove duplicate border */
+  box-shadow: none; /* Remove duplicate shadow */
 }
 
 .game-inputs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Responsive columns */
-  gap: 10px;
-  margin: 15px 0;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 15px; /* Increased gap */
+  margin: 20px 0;
 }
 
 .game-inputs input {
-  padding: 8px 5px; /* Increased padding */
-  border: 2px solid var(--accent-color);
+  padding: 12px 8px; /* Increased padding */
+  border: 2px solid rgba(var(--accent-color), 0.5); /* Subtler border */
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(10, 10, 10, 0.6); /* Darker input bg */
   color: var(--text-color);
   text-align: center;
-  font-size: 1em; /* Increased font size */
-  width: 100%; /* Ensure full grid cell width */
-  -moz-appearance: textfield; /* Hides spinners in Firefox */
+  font-size: 1.1em;
+  font-weight: 600;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -moz-appearance: textfield;
 }
-/* Hides spinners in Chrome, Safari, Edge */
 .game-inputs input::-webkit-outer-spin-button,
 .game-inputs input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+.game-inputs input::placeholder {
+    color: var(--text-color-muted);
+    font-weight: 400;
+    font-size: 0.9em;
+}
+.game-inputs input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 10px var(--shadow-color-light);
+}
 
 #check-btn {
-  background: var(--accent-color);
+  background: var(--accent-gradient); /* Gradient background */
   color: white;
   border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
+  padding: 14px 35px; /* Larger padding */
+  border-radius: 50px; /* Pill shape */
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease;
   display: block;
-  margin: 20px auto 0; /* Adjusted margin */
-  font-size: 1em;
+  margin: 25px auto 0;
+  font-size: 1.1em;
   font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 #check-btn:hover,
-#check-btn:focus { /* Added focus state */
-  background: #0096c7; /* Slightly different hover color */
-  transform: scale(1.05);
-  outline: none; /* Remove default focus outline if custom style is sufficient */
+#check-btn:focus {
+  transform: scale(1.05) translateY(-2px); /* More pronounced hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color-light);
+  filter: brightness(1.1);
+  outline: none;
 }
 
 #game-result {
-  margin-top: 15px; /* Increased margin */
+  margin-top: 20px;
   text-align: center;
-  font-size: 1.1em;
-  min-height: 1.5em; /* Ensure space for message */
+  font-size: 1.2em;
+  min-height: 1.6em;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Added transform transition with bounce */
+  transform-origin: center bottom;
+}
+#game-result.success,
+#game-result.error { /* Apply transform when class is added */
+    transform: scale(1.1);
 }
 #game-result.error {
-    color: var(--error-color);
+  color: var(--error-color);
 }
 #game-result.success {
-    color: var(--accent-color);
+  color: var(--success-color); /* Use success color variable */
 }
 
+/* --- Music Player --- */
 #music-player {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 10px 15px;
-  border-radius: 30px;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px); /* Safari prefix */
-  box-shadow: 0 0 15px var(--image-shadow-color);
-  z-index: 10; /* Ensure it's above other content */
-  transition: width 0.3s ease; /* Added transition for width change */
+  bottom: 25px;
+  right: 25px;
+  background: rgba(10, 10, 10, 0.75);
+  padding: 12px 18px;
+  border-radius: 50px; /* Pill shape */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color-light);
+  z-index: 10;
+  transition: all 0.3s ease-in-out; /* Transition all properties */
 }
 
 #music-player audio {
-  display: block; /* Prevent extra space */
-  width: 200px; /* Initial width */
-  height: 40px; /* Explicit height */
-  transition: width 0.3s ease; /* Transition for width */
+  display: block;
+  width: 220px; /* Slightly wider base */
+  height: 45px; /* Taller */
+  opacity: 0.8; /* Slightly transparent */
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-#music-player audio:hover,
-#music-player audio:focus-within { /* Expand on hover or when controls focused */
-  width: 250px;
+#music-player:hover,
+#music-player:focus-within { /* Expand on hover or focus within */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 20px var(--shadow-color-light);
 }
 
-/* Footer specific styling */
+#music-player:hover audio,
+#music-player:focus-within audio {
+  width: 280px; /* Wider on hover/focus */
+  opacity: 1; /* Fully opaque */
+}
+
+/* --- Footer --- */
 footer {
-  padding: 20px; /* Reduced padding */
-  margin-top: 40px; /* More space before footer */
-  background: rgba(10, 10, 10, 0.8); /* Slightly different footer background */
+  padding: 25px;
+  margin-top: 40px;
+  background: rgba(10, 10, 10, 0.9); /* Darker footer */
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle top border */
 }
 
 footer p {
   text-align: center;
-  font-size: 0.9em;
-  color: #aaa; /* Lighter color for footer text */
+  font-size: 0.95em;
+  color: var(--text-color-muted);
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
+/* --- Accessibility Helper --- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
   body {
-    padding: 10px;
-    padding-bottom: 180px; /* Ensure space for music player */
+    padding: 15px;
+    padding-bottom: 160px;
   }
   header, main, footer, #time-container {
-    padding: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding: 25px;
+    margin-left: 0;
+    margin-right: 0;
   }
   header h1 {
-    font-size: 2em;
+    font-size: 2.4em;
   }
   #current-time {
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
-  .link-item a {
-    font-size: 1em;
+  .section-title {
+    font-size: 1.4em;
+  }
+  .link-item {
+      padding: 15px 20px 15px 55px;
+  }
+  .image-gallery {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
+      gap: 15px;
   }
   .image-gallery img {
-      height: 150px; /* Adjust image height */
+      height: 160px;
   }
   #music-player {
-      right: 10px;
-      bottom: 10px;
-      padding: 8px 12px;
+      right: 15px;
+      bottom: 15px;
+      padding: 10px 15px;
   }
   #music-player audio {
       width: 180px;
-      height: 35px;
+      height: 40px;
   }
-   #music-player audio:hover,
-   #music-player audio:focus-within {
-       width: 220px;
+   #music-player:hover audio,
+   #music-player:focus-within audio {
+       width: 240px;
    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .section-title {
+        font-size: 1.3em;
+    }
+    .link-item a {
+        font-size: 1.05em;
+    }
+    .game-inputs input {
+        font-size: 1em;
+        padding: 10px 6px;
+    }
+    #check-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+    #game-result {
+        font-size: 1.1em;
+    }
+     #music-player { display: none; } /* Optionally hide music player on very small screens */
+     body { padding-bottom: 50px; } /* Adjust padding if player hidden */
 }
 
 /* END OF FILE style.css */
