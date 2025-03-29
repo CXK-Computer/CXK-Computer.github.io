@@ -2,6 +2,46 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Particle Effects ---
+    const particlesContainer = document.getElementById('particles-js');
+    if (typeof particlesJS !== 'undefined' && particlesContainer) {
+        let particleCount = 80;
+        let enableInteractivity = true;
+
+        // Reduce particles and disable interactivity on smaller screens
+        if (window.innerWidth <= 768) {
+            particleCount = 30; // Significantly reduce particle count
+            enableInteractivity = false; // Disable hover/click effects
+        }
+
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: particleCount, density: { enable: true, value_area: 800 } }, // Use variable
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false, anim: { enable: false } },
+                size: { value: 3, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out", bounce: false, attract: { enable: false } }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: enableInteractivity, mode: "repulse" }, // Use variable
+                    onclick: { enable: enableInteractivity, mode: "push" },    // Use variable
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    } else {
+        console.warn("particles.js library not loaded or container not found.");
+    }
+
   // --- Live2D Widget Loader ---
   // Check if the widget script is already loaded (e.g., by direct script tag)
   // If not, dynamically load it. This is optional if you keep the direct script tag.
