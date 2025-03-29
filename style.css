@@ -1,0 +1,352 @@
+/* START OF FILE style.css */
+
+/* Dynamic background particles (Placeholder comment, handled by JS library) */
+#particles-js {
+  position: fixed; /* Changed from absolute to fixed for consistent background */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --accent-color: #00b4d8;
+  --section-bg: rgba(40, 40, 40, 0.9);
+  --link-hover-color: #0077ff; /* Added variable for consistency */
+  --image-shadow-color: rgba(0, 180, 216, 0.3);
+  --error-color: #ff5555; /* Added variable */
+}
+
+.dark-mode {
+  --bg-color: #0a0a0a;
+  --text-color: #c0c0c0;
+  --accent-color: #0088cc;
+  --section-bg: rgba(20, 20, 20, 0.95);
+  --link-hover-color: #0055cc; /* Dark mode adjustment */
+  --image-shadow-color: rgba(0, 136, 204, 0.3); /* Dark mode adjustment */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease; /* Optimized transition properties */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 20px;
+  /* Subtle geometric background pattern */
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%),
+                    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 20px 20px;
+  padding-bottom: 150px; /* Adjusted padding */
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  position: relative; /* Needed for particle js z-index */
+  overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+header, main, footer {
+  max-width: 800px;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari prefix */
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
+  position: relative; /* Ensure content is above particles */
+  z-index: 1;
+}
+
+header h1 {
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#time-container {
+  text-align: center;
+  margin: 20px auto; /* Center horizontally */
+  padding: 15px;
+  background: var(--section-bg);
+  border-radius: 10px;
+  max-width: 800px; /* Match main content width */
+  position: relative; /* Ensure content is above particles */
+  z-index: 1;
+}
+
+#current-time {
+  font-size: 2em;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+#time-notice {
+    font-size: 1em; /* Adjusted size */
+    min-height: 1.2em; /* Prevent layout shift */
+}
+
+.content-section {
+  margin: 25px 0;
+  padding: 20px;
+  background: var(--section-bg);
+  border-radius: 10px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.section-title {
+  color: #00d4a0; /* Keeping unique color */
+  margin-bottom: 15px;
+  font-size: 1.3em;
+  border-bottom: 2px solid var(--link-hover-color);
+  padding-bottom: 5px;
+}
+
+.link-list {
+  counter-reset: link-counter;
+  list-style: none; /* Remove default list styling if considered a list */
+}
+
+.link-item {
+  position: relative;
+  padding: 15px 20px 15px 45px;
+  margin: 15px 0;
+  background: rgba(30, 30, 30, 0.9);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Optimized transition */
+}
+
+.link-item::before {
+  counter-increment: link-counter;
+  content: counter(link-counter);
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 50%;
+  display: flex; /* Use flex for centering */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9em; /* Slightly smaller font */
+}
+
+.link-item:hover {
+  transform: translateX(5px); /* Reduced hover effect slightly */
+  box-shadow: 3px 3px 10px var(--image-shadow-color);
+}
+
+.link-item a {
+  color: #90e0ef;
+  text-decoration: none;
+  font-size: 1.1em;
+  word-break: break-all;
+  transition: color 0.3s ease;
+}
+
+.link-item a:hover,
+.link-item a:focus { /* Added focus state for accessibility */
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.auth-info {
+  background: #002b36;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 25px 0;
+  font-family: 'Fira Code', monospace; /* Keep specific font */
+  white-space: pre-wrap;
+  word-wrap: break-word; /* Ensure long lines wrap */
+  border: 1px solid #004d66;
+  color: #eee; /* Ensure readability on dark bg */
+  font-size: 0.9em; /* Slightly smaller for code */
+  overflow-x: auto; /* Add scroll if needed */
+}
+
+.image-gallery {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-gallery img {
+  max-width: 300px; /* Use max-width for responsiveness */
+  width: 100%; /* Allow shrinking */
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px var(--image-shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block; /* Remove extra space below image */
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px var(--image-shadow-color); /* Enhance shadow on hover */
+}
+
+.game-section {
+  background: var(--section-bg);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 25px 0;
+}
+
+.game-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Responsive columns */
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.game-inputs input {
+  padding: 8px 5px; /* Increased padding */
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
+  text-align: center;
+  font-size: 1em; /* Increased font size */
+  width: 100%; /* Ensure full grid cell width */
+  -moz-appearance: textfield; /* Hides spinners in Firefox */
+}
+/* Hides spinners in Chrome, Safari, Edge */
+.game-inputs input::-webkit-outer-spin-button,
+.game-inputs input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+#check-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: block;
+  margin: 20px auto 0; /* Adjusted margin */
+  font-size: 1em;
+  font-weight: 600;
+}
+
+#check-btn:hover,
+#check-btn:focus { /* Added focus state */
+  background: #0096c7; /* Slightly different hover color */
+  transform: scale(1.05);
+  outline: none; /* Remove default focus outline if custom style is sufficient */
+}
+
+#game-result {
+  margin-top: 15px; /* Increased margin */
+  text-align: center;
+  font-size: 1.1em;
+  min-height: 1.5em; /* Ensure space for message */
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+#game-result.error {
+    color: var(--error-color);
+}
+#game-result.success {
+    color: var(--accent-color);
+}
+
+#music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* Safari prefix */
+  box-shadow: 0 0 15px var(--image-shadow-color);
+  z-index: 10; /* Ensure it's above other content */
+  transition: width 0.3s ease; /* Added transition for width change */
+}
+
+#music-player audio {
+  display: block; /* Prevent extra space */
+  width: 200px; /* Initial width */
+  height: 40px; /* Explicit height */
+  transition: width 0.3s ease; /* Transition for width */
+}
+
+#music-player audio:hover,
+#music-player audio:focus-within { /* Expand on hover or when controls focused */
+  width: 250px;
+}
+
+/* Footer specific styling */
+footer {
+  padding: 20px; /* Reduced padding */
+  margin-top: 40px; /* More space before footer */
+  background: rgba(10, 10, 10, 0.8); /* Slightly different footer background */
+}
+
+footer p {
+  text-align: center;
+  font-size: 0.9em;
+  color: #aaa; /* Lighter color for footer text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+    padding-bottom: 180px; /* Ensure space for music player */
+  }
+  header, main, footer, #time-container {
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  header h1 {
+    font-size: 2em;
+  }
+  #current-time {
+    font-size: 1.5em;
+  }
+  .link-item a {
+    font-size: 1em;
+  }
+  .image-gallery img {
+      height: 150px; /* Adjust image height */
+  }
+  #music-player {
+      right: 10px;
+      bottom: 10px;
+      padding: 8px 12px;
+  }
+  #music-player audio {
+      width: 180px;
+      height: 35px;
+  }
+   #music-player audio:hover,
+   #music-player audio:focus-within {
+       width: 220px;
+   }
+}
+
+/* END OF FILE style.css */
