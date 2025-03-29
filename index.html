@@ -4,465 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Clash 配置中心 By TTY</title>
+  <!-- Preconnect to Google Fonts domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-      <style>
-            /* 动态背景粒子 */
-        #particles-js {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: -1;
-        }
-        :root {
-          --bg-color: #1a1a1a;
-          --text-color: #e0e0e0;
-          --accent-color: #00b4d8;
-          --section-bg: rgba(40, 40, 40, 0.9);
-        }
-        .dark-mode {
-          --bg-color: #0a0a0a;
-          --text-color: #c0c0c0;
-          --accent-color: #0088cc;
-          --section-bg: rgba(20, 20, 20, 0.95);
-        }
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-          transition: background 0.5s ease;
-        }
-        body {
-          background: var(--bg-color);
-          color: var(--text-color);
-          line-height: 1.6;
-          padding: 20px;
-          background-image: linear-gradient(45deg, #2c2c2c 25%, transparent 25%),
-                            linear-gradient(-45deg, #2c2c2c 25%, transparent 25%),
-                            linear-gradient(45deg, transparent 75%, #2c2c2c 75%),
-                            linear-gradient(-45deg, transparent 75%, #2c2c2c 75%);
-          background-size: 20px 20px;
-          padding-bottom: 200px;
-        }
-        header, main, footer {
-          max-width: 800px;
-          margin: 20px auto;
-          background: rgba(0, 0, 0, 0.8);
-          padding: 30px;
-          border-radius: 15px;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
-        }
-        header h1 {
-          color: var(--accent-color);
-          text-align: center;
-          margin-bottom: 30px;
-          font-size: 2.5em;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        #time-container {
-          text-align: center;
-          margin: 20px 0;
-          padding: 15px;
-          background: var(--section-bg);
-          border-radius: 10px;
-        }
-        #current-time {
-          font-size: 2em;
-          color: var(--accent-color);
-          margin-bottom: 10px;
-        }
-        .content-section {
-          margin: 25px 0;
-          padding: 20px;
-          background: var(--section-bg);
-          border-radius: 10px;
-          border-left: 4px solid var(--accent-color);
-        }
-        .section-title {
-          color: #00d4a0;
-          margin-bottom: 15px;
-          font-size: 1.3em;
-          border-bottom: 2px solid #0077ff;
-          padding-bottom: 5px;
-        }
-        .link-list {
-          counter-reset: link-counter;
-        }
-        .link-item {
-          position: relative;
-          padding: 15px 20px 15px 45px;
-          margin: 15px 0;
-          background: rgba(30, 30, 30, 0.9);
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-        .link-item::before {
-          counter-increment: link-counter;
-          content: counter(link-counter);
-          position: absolute;
-          left: 15px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 25px;
-          height: 25px;
-          background: var(--accent-color);
-          color: #fff;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 25px;
-          font-weight: bold;
-        }
-        .link-item:hover {
-          transform: translateX(10px);
-          box-shadow: 3px 3px 10px rgba(0, 180, 216, 0.3);
-        }
-        .link-item a {
-          color: #90e0ef;
-          text-decoration: none;
-          font-size: 1.1em;
-          word-break: break-all;
-        }
-        .link-item a:hover {
-          color: var(--accent-color);
-          text-decoration: underline;
-        }
-        .auth-info {
-          background: #002b36;
-          padding: 20px;
-          border-radius: 8px;
-          margin: 25px 0;
-          font-family: 'Fira Code', monospace;
-          white-space: pre-wrap;
-          border: 1px solid #004d66;
-        }
-        .image-gallery {
-          display: flex;
-          gap: 15px;
-          margin: 20px 0;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-        .image-gallery img {
-          width: 300px;
-          height: 180px;
-          border-radius: 10px;
-          object-fit: cover;
-          box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
-          transition: transform 0.3s ease;
-        }
-        .image-gallery img:hover {
-          transform: scale(1.05);
-        }
-        .game-section {
-          background: var(--section-bg);
-          padding: 20px;
-          border-radius: 10px;
-          margin: 25px 0;
-        }
-        .game-inputs {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
-          margin: 15px 0;
-        }
-        .game-inputs input {
-          padding: 3px;
-          border: 2px solid var(--accent-color);
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      text-align: center;
-      font-size: 10px;
-    }
-    #check-btn {
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: block;
-      margin: 0 auto;
-    }
-    #check-btn:hover {
-      background: #0096c7;
-      transform: scale(1.05);
-    }
-    #game-result {
-      margin-top: 2px;
-      text-align: center;
-      font-size: 1.1em;
-      min-height: 2px;
-    }
-    #music-player {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px 15px;
-      border-radius: 30px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
-    }
-    audio {
-      width: 200px;
-      transition: all 0.3s ease;
-    }
-    audio:hover {
-      width: 250px;
-    }
-                /* 动态背景粒子 */
-        #particles-js {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-          z-index: -1;
-        }
-        :root {
-          --bg-color: #1a1a1a;
-          --text-color: #e0e0e0;
-          --accent-color: #00b4d8;
-          --section-bg: rgba(40, 40, 40, 0.9);
-        }
-        .dark-mode {
-          --bg-color: #0a0a0a;
-          --text-color: #c0c0c0;
-          --accent-color: #0088cc;
-          --section-bg: rgba(20, 20, 20, 0.95);
-        }
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: 'Poppins', sans-serif;
-          transition: background 0.5s ease;
-        }
-        body {
-          background: var(--bg-color);
-          color: var(--text-color);
-          line-height: 1.6;
-          padding: 20px;
-          background-image: linear-gradient(45deg, #2c2c2c 25%, transparent 25%),
-                            linear-gradient(-45deg, #2c2c2c 25%, transparent 25%),
-                            linear-gradient(45deg, transparent 75%, #2c2c2c 75%),
-                            linear-gradient(-45deg, transparent 75%, #2c2c2c 75%);
-          background-size: 20px 20px;
-          padding-bottom: 200px;
-        }
-        header, main, footer {
-          max-width: 800px;
-          margin: 20px auto;
-          background: rgba(0, 0, 0, 0.8);
-          padding: 30px;
-          border-radius: 15px;
-          backdrop-filter: blur(10px);
-          box-shadow: 0 0 20px rgba(0, 150, 255, 0.2);
-        }
-        header h1 {
-          color: var(--accent-color);
-          text-align: center;
-          margin-bottom: 30px;
-          font-size: 2.5em;
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        #time-container {
-          text-align: center;
-          margin: 20px 0;
-          padding: 15px;
-          background: var(--section-bg);
-          border-radius: 10px;
-        }
-        #current-time {
-          font-size: 2em;
-          color: var(--accent-color);
-          margin-bottom: 10px;
-        }
-        .content-section {
-          margin: 25px 0;
-          padding: 20px;
-          background: var(--section-bg);
-          border-radius: 10px;
-          border-left: 4px solid var(--accent-color);
-        }
-        .section-title {
-          color: #00d4a0;
-          margin-bottom: 15px;
-          font-size: 1.3em;
-          border-bottom: 2px solid #0077ff;
-          padding-bottom: 5px;
-        }
-        .link-list {
-          counter-reset: link-counter;
-        }
-        .link-item {
-          position: relative;
-          padding: 15px 20px 15px 45px;
-          margin: 15px 0;
-          background: rgba(30, 30, 30, 0.9);
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-        .link-item::before {
-          counter-increment: link-counter;
-          content: counter(link-counter);
-          position: absolute;
-          left: 15px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 25px;
-          height: 25px;
-          background: var(--accent-color);
-          color: #fff;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 25px;
-          font-weight: bold;
-        }
-        .link-item:hover {
-          transform: translateX(10px);
-          box-shadow: 3px 3px 10px rgba(0, 180, 216, 0.3);
-        }
-        .link-item a {
-          color: #90e0ef;
-          text-decoration: none;
-          font-size: 1.1em;
-          word-break: break-all;
-        }
-        .link-item a:hover {
-          color: var(--accent-color);
-          text-decoration: underline;
-        }
-        .auth-info {
-          background: #002b36;
-          padding: 20px;
-          border-radius: 8px;
-          margin: 25px 0;
-          font-family: 'Fira Code', monospace;
-          white-space: pre-wrap;
-          border: 1px solid #004d66;
-        }
-        .image-gallery {
-          display: flex;
-          gap: 15px;
-          margin: 20px 0;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-        .image-gallery img {
-          width: 300px;
-          height: 180px;
-          border-radius: 10px;
-          object-fit: cover;
-          box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
-          transition: transform 0.3s ease;
-        }
-        .image-gallery img:hover {
-          transform: scale(1.05);
-        }
-        .game-section {
-          background: var(--section-bg);
-          padding: 20px;
-          border-radius: 10px;
-          margin: 25px 0;
-        }
-        .game-inputs {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
-          margin: 15px 0;
-        }
-        .game-inputs input {
-          padding: 3px;
-          border: 2px solid var(--accent-color);
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      text-align: center;
-      font-size: 10px;
-    }
-    #check-btn {
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: block;
-      margin: 0 auto;
-    }
-    #check-btn:hover {
-      background: #0096c7;
-      transform: scale(1.05);
-    }
-    #game-result {
-      margin-top: 2px;
-      text-align: center;
-      font-size: 1.1em;
-      min-height: 2px;
-    }
-    #music-player {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px 15px;
-      border-radius: 30px;
-      backdrop-filter: blur(5px);
-      box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
-    }
-    audio {
-      width: 200px;
-      transition: all 0.3s ease;
-    }
-    audio:hover {
-      width: 250px;
-    }
-  </style>
-  </style>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Add Fira Code font if needed for auth-info -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
 </head>
 <body>
-  <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js">
-  </script>
+  <!-- Particle effect container -->
+  <div id="particles-js"></div>
+
+  <!-- Live2D Widget Loader (Keep or remove based on preference) -->
+  <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
+
   <div id="time-container" aria-live="polite">
-    <div id="current-time"></div>
-    <div id="time-notice"></div>
+    <div id="current-time">--:--:--</div>
+    <div id="time-notice">加载中...</div>
   </div>
+
   <header>
     <h1>🔗 Clash 配置中心</h1>
   </header>
+
   <main>
     <section class="image-gallery" aria-label="配置预览图">
-      <img src="https://a.allegroimg.com/s720/11db03/4e80d8784cd581f47cba2b616e54/Naklejka-na-auto-wodoodporna-FUCK-YOU-PALEC-SRODEK.jpg" alt="贴纸示例" loading="lazy">
-      <img src="https://s21.ax1x.com/2025/02/28/pE8Nr9K.md.png" alt="网络示意图" loading="lazy">
-      <img src="https://s21.ax1x.com/2025/02/28/pE8N44P.png" alt="配置演示图" loading="lazy">
+      <!-- Descriptive alt text (example in Chinese) -->
+      <img src="https://a.allegroimg.com/s720/11db03/4e80d8784cd581f47cba2b616e54/Naklejka-na-auto-wodoodporna-FUCK-YOU-PALEC-SRODEK.jpg" alt="黑色背景上的白色中指图案贴纸示例" loading="lazy">
+      <img src="https://s21.ax1x.com/2025/02/28/pE8Nr9K.md.png" alt="网络连接示意图概念图" loading="lazy">
+      <img src="https://s21.ax1x.com/2025/02/28/pE8N44P.png" alt="Clash软件界面配置截图示例" loading="lazy">
     </section>
 
     <section class="content-section">
       <h2 class="section-title">资源链接</h2>
       <div class="link-list">
-        <div class="link-item"><a href="https://github.com/snakem982/proxypool/">Proxypool 项目主页</a></div>
-        <div class="link-item"><a href="https://raw.hellogithub.com/hosts">GitHub 加速Hosts</a></div>
-        <div class="link-item"><a href="https://clash.qszx.us.kg/qszx?clash">在线配置生成器</a></div>
-        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/snakem982/proxypool@main/source/clash-meta.yaml">Clash Meta 配置源</a></div>
-        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/ermaozi/get_subscribe@main/subscribe/clash.yml">订阅链接集合</a></div>
-        <div class="link-item"><a href="https://robin.nscl.ir/">Robin 节点服务</a></div>
-        <div class="link-item"><a href="https://github.com/chen08209/FlClash">FlClash 客户端</a></div>
-        <div class="link-item"><a href="https://gist.githubusercontent.com/CXK-Computer/3ba897b4a616950a5ec83f708e098535/raw/clash.yaml">唯一真神订阅链接集合</a></div>
+        <!-- Added target="_blank" and rel="noopener noreferrer" for external links -->
+        <div class="link-item"><a href="https://github.com/snakem982/proxypool/" target="_blank" rel="noopener noreferrer">Proxypool 项目主页</a></div>
+        <div class="link-item"><a href="https://raw.hellogithub.com/hosts" target="_blank" rel="noopener noreferrer">GitHub 加速Hosts</a></div>
+        <div class="link-item"><a href="https://clash.qszx.us.kg/qszx?clash" target="_blank" rel="noopener noreferrer">在线配置生成器</a></div>
+        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/snakem982/proxypool@main/source/clash-meta.yaml" target="_blank" rel="noopener noreferrer">Clash Meta 配置源</a></div>
+        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/ermaozi/get_subscribe@main/subscribe/clash.yml" target="_blank" rel="noopener noreferrer">订阅链接集合</a></div>
+        <div class="link-item"><a href="https://robin.nscl.ir/" target="_blank" rel="noopener noreferrer">Robin 节点服务</a></div>
+        <div class="link-item"><a href="https://github.com/chen08209/FlClash" target="_blank" rel="noopener noreferrer">FlClash 客户端</a></div>
+        <div class="link-item"><a href="https://gist.githubusercontent.com/CXK-Computer/3ba897b4a616950a5ec83f708e098535/raw/clash.yaml" target="_blank" rel="noopener noreferrer">唯一真神订阅链接集合</a></div>
       </div>
     </section>
 
     <section class="content-section">
       <h2 class="section-title">认证信息</h2>
-      <pre class="auth-info">
-Github 2FA
+      <!-- Use code tag inside pre for semantic meaning -->
+      <pre class="auth-info"><code>Github 2FA
 2f973-9d1f1
 8e37c-2c1e6
 fa99a-cff66
@@ -487,16 +80,21 @@ a7jfkwxvs7unsj7k
 
 牢软PW：2bqszxsbfw
 X回复码：5biy6siheuaj
-      </pre>
+</code></pre>
     </section>
 
     <section class="game-section">
       <h2 class="section-title">🎮 24点小游戏</h2>
       <div class="game-inputs">
-        <input type="number" placeholder="数字1" min="1" max="9">
-        <input type="number" placeholder="数字2" min="1" max="9">
-        <input type="number" placeholder="数字3" min="1" max="9">
-        <input type="number" placeholder="数字4" min="1" max="9">
+        <!-- Added labels (visually hidden for this layout) for accessibility -->
+        <label for="num1" class="visually-hidden">数字1</label>
+        <input type="number" id="num1" placeholder="数字1" min="1" max="13">
+        <label for="num2" class="visually-hidden">数字2</label>
+        <input type="number" id="num2" placeholder="数字2" min="1" max="13">
+        <label for="num3" class="visually-hidden">数字3</label>
+        <input type="number" id="num3" placeholder="数字3" min="1" max="13">
+        <label for="num4" class="visually-hidden">数字4</label>
+        <input type="number" id="num4" placeholder="数字4" min="1" max="13">
       </div>
       <button id="check-btn">验证解法</button>
       <div id="game-result" aria-live="polite"></div>
@@ -504,127 +102,40 @@ X回复码：5biy6siheuaj
   </main>
 
   <footer>
-    <p style="text-align: center;">&copy; 2025 Clash 配置中心</p>
+    <p>&copy; 2025 Clash 配置中心</p>
   </footer>
 
-  <!-- 音乐播放器 -->
+  <!-- Music Player: Removed autoplay for better UX -->
   <div id="music-player">
-    <audio controls autoplay loop>
+    <audio controls loop preload="metadata">
       <source src="https://api.vvhan.com/api/wyMusic/热歌榜" type="audio/mpeg">
       您的浏览器不支持音频播放
     </audio>
   </div>
 
-  <!-- 异步加载第三方脚本 -->
+  <!-- External utility scripts (snow, wave effects) - async keeps them non-blocking -->
   <script async src="https://api.vvhan.com/api/script/snow"></script>
   <script async src="https://api.vvhan.com/api/script/bolang"></script>
-  
-  <!-- 粒子特效 -->
+
+  <!-- Particle library -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80 },
-        size: { value: 3 },
-        move: { speed: 1 }
-      }
-    });
-  </script>
 
-  <script>
-    // 时钟与深色模式
-    (function updateClock() {
-      const now = new Date();
-      const options = { timeZone: 'Asia/Shanghai', hour12: false, hour: 'numeric', minute: '2-digit', second: '2-digit' };
-      document.getElementById('current-time').textContent = now.toLocaleTimeString('zh-CN', options);
-      
-      const hour = now.getHours();
-      let notice = '';
-      if (hour >= 5 && hour < 9) {
-        notice = '🌅 清晨好！牢大！';
-      } else if (hour >= 9 && hour < 12) {
-        notice = '🌞 上午好！Manba out！';
-      } else if (hour >= 12 && hour < 14) {
-        notice = '☀️ 中午好！Pull up！';
-      } else if (hour >= 14 && hour < 18) {
-        notice = '🌤 下午好！保持废物';
-      } else if (hour >= 18 && hour < 23) {
-        notice = '🌙 晚上好！注意隐私';
-      } else {
-        notice = '🌃 深夜好！死猪还不睡觉！';
-      }
-      document.getElementById('time-notice').textContent = notice;
-      document.body.classList.toggle('dark-mode', hour >= 18 || hour < 6);
-      
-      setTimeout(updateClock, 1000);
-    })();
+  <!-- Link to external JS - defer ensures it runs after HTML parsing -->
+  <script src="script.js" defer></script>
 
-    // 24点小游戏逻辑
-    document.getElementById('check-btn').addEventListener('click', function() {
-      const inputs = document.querySelectorAll('.game-inputs input');
-      const numbers = Array.from(inputs).map(input => Number(input.value));
-      if (numbers.some(num => !num || num < 1 || num > 9)) {
-        showResult('请输入4个1-9的数字！', 'red');
-        return;
-      }
-      const solutions = solve24(numbers);
-      if (solutions.length > 0) {
-        showResult(`找到解法：${solutions[0]}`, '#00b4d8');
-      } else {
-        showResult('无解，请尝试其他数字组合', '#ff5555');
-      }
-    });
-
-    function showResult(text, color) {
-      const resultDiv = document.getElementById('game-result');
-      resultDiv.style.color = color;
-      resultDiv.innerHTML = text;
+  <!-- Add CSS for visually hidden labels -->
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
-
-    function solve24(numbers) {
-      const ops = ['+', '-', '*', '/'];
-      const solutions = [];
-
-      function generateExpressions(nums, exps) {
-        if (nums.length === 1) {
-          if (Math.abs(nums[0] - 24) < 0.001) solutions.push(exps[0]);
-          return;
-        }
-        for (let i = 0; i < nums.length; i++) {
-          for (let j = 0; j < nums.length; j++) {
-            if (i === j) continue;
-            const remainingNums = nums.filter((_, index) => index !== i && index !== j);
-            const remainingExps = exps.filter((_, index) => index !== i && index !== j);
-            for (const op of ops) {
-              if (op === '/' && nums[j] === 0) continue;
-              let newNum, newExp;
-              switch(op) {
-                case '+':
-                  newNum = nums[i] + nums[j];
-                  newExp = `(${exps[i]}+${exps[j]})`;
-                  break;
-                case '-':
-                  newNum = nums[i] - nums[j];
-                  newExp = `(${exps[i]}-${exps[j]})`;
-                  break;
-                case '*':
-                  newNum = nums[i] * nums[j];
-                  newExp = `(${exps[i]}×${exps[j]})`;
-                  break;
-                case '/':
-                  newNum = nums[i] / nums[j];
-                  newExp = `(${exps[i]}÷${exps[j]})`;
-                  break;
-              }
-              generateExpressions([...remainingNums, newNum], [...remainingExps, newExp]);
-            }
-          }
-        }
-      }
-      generateExpressions(numbers, numbers.map(String));
-      return solutions;
-    }
-  </script>
-  <div id="particles-js"></div>
+  </style>
 </body>
 </html>
