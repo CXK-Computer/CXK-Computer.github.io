@@ -27,6 +27,126 @@
   --section-bg: rgba(24, 24, 27, 0.9);
   --shadow-color-light: rgba(0, 174, 249, 0.2);
 }
+  --section-bg-fallback: rgba(38, 38, 42, 0.92); /* Fallback if backdrop-filter is removed */
+  --music-player-bg-fallback: rgba(10, 10, 10, 0.85);
+}
+
+/* ... (keep other base styles) ... */
+
+body {
+  /* ... existing styles ... */
+  /* Add class for script loading control */
+}
+
+body.disable-heavy-scripts .optional-script-element {
+    display: none; /* Example class to hide script containers if needed */
+}
+
+
+/* --- Layout Containers --- */
+header, main, footer, #time-container {
+  /* ... existing styles ... */
+  background: var(--section-bg-fallback); /* USE FALLBACK FIRST */
+  /* backdrop-filter: blur(12px); */ /* CRITICAL: Comment out or remove backdrop-filter for performance */
+  /* -webkit-backdrop-filter: blur(12px); */ /* CRITICAL: Comment out or remove */
+  box-shadow: 0 4px 15px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light); /* Keep shadow */
+  /* ... */
+}
+
+/* --- Image Gallery --- */
+.image-gallery img {
+  /* ... existing styles ... */
+  width: 100%;
+  height: auto; /* Let height adjust based on width and aspect ratio */
+  aspect-ratio: 16 / 10; /* EXAMPLE: Set aspect ratio if images might not load correctly - adjust ratio as needed */
+  object-fit: cover; /* Keep cover */
+  /* ... */
+}
+
+
+/* --- Music Player --- */
+#music-player {
+  /* ... existing styles ... */
+  background: var(--music-player-bg-fallback); /* USE FALLBACK */
+  backdrop-filter: blur(8px); /* Keep blur ONLY here if desired, it's smaller */
+  -webkit-backdrop-filter: blur(8px); /* Keep blur ONLY here */
+  /* ... */
+}
+/* Hide optional demanding scripts via CSS */
+.vvhan-snow, .vvhan-bolang { /* Selectors depend on how the scripts add elements */
+    /* Default: enabled */
+}
+
+
+/* --- Responsive Adjustments --- */
+
+/* Tablet Portrait & Large Phones */
+@media (max-width: 992px) {
+    :root { /* Slightly reduce padding/margins */
+        --content-max-width: 95%;
+    }
+    header, main, footer, #time-container {
+        padding: 25px;
+    }
+    header h1 { font-size: 2.5em; }
+    .section-title { font-size: 1.5em; }
+     /* Optimize particle JS - Less dense */
+     /* JS interaction needed here - see JS section below */
+}
+
+/* Tablet Portrait & Phones */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        padding-bottom: 160px; /* If music player visible */
+    }
+    header, main, footer, #time-container {
+        padding: 20px; /* Further reduce padding */
+    }
+    header h1 { font-size: 2.2em; }
+    #current-time { font-size: 1.6em; }
+    .section-title { font-size: 1.3em; }
+    .link-item { padding: 15px 20px 15px 50px; } /* Adjust padding */
+    .link-item a { font-size: 1.1em; }
+    .image-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
+    .game-inputs { gap: 10px; }
+    .game-inputs input { padding: 10px 6px; font-size: 1em;}
+    #check-btn { padding: 12px 30px; font-size: 1em; }
+
+    /* Hide demanding optional scripts */
+    .vvhan-snow, .vvhan-bolang {
+        display: none !important; /* Force hide */
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        padding-bottom: 30px; /* No music player */
+        line-height: 1.6; /* Slightly tighter line height */
+    }
+    header, main, footer, #time-container {
+        padding: 15px;
+    }
+    header h1 { font-size: 1.8em; }
+    .section-title { font-size: 1.2em; }
+    .link-item { padding: 12px 15px 12px 45px; }
+    .link-item a { font-size: 1em; }
+     .image-gallery { /* Stack images */
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .game-section { padding: 15px;} /* Less padding */
+    #music-player {
+        display: none; /* Hide music player */
+    }
+    /* Optionally hide Live2D widget on very small screens if it causes issues */
+    /* #live2d-widget { display: none; } */
+}
 
 /* --- Reset & Base --- */
 * {
