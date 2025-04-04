@@ -4,26 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Clash 配置中心 By TTY</title>
-  <!-- Preconnect to Google Fonts domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Link to external CSS -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Add Fira Code font if needed for auth-info -->
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Particle effect container -->
-  <div id="particles-js"></div>
 
-  <!-- Live2D Widget Loader (Keep or remove based on preference) -->
+  <div id="particles-js"></div>
+  
+
   <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
 
   <div id="time-container" aria-live="polite">
     <div id="current-time">--:--:--</div>
     <div id="time-notice">加载中...</div>
   </div>
+        <div class="clock">
+        <div class="hourHand"></div>
+        <div class="minuteHand"></div>
+        <div class="secondHand"></div>
+        <div class="center"></div>
+        <div class="time"></div>
+        <ul>
+            <li><span>1</span></li>
+            <li><span>2</span></li>
+            <li><span>3</span></li>
+            <li><span>4</span></li>
+            <li><span>5</span></li>
+            <li><span>6</span></li>
+            <li><span>7</span></li>
+            <li><span>8</span></li>
+            <li><span>9</span></li>
+            <li><span>10</span></li>
+            <li><span>11</span></li>
+            <li><span>12</span></li>
+        </ul>
+    </div>
 
   <header>
     <h1>🔗 Clash 配置中心</h1>
@@ -31,8 +49,7 @@
 
   <main>
     <section class="image-gallery" aria-label="配置预览图">
-      <!-- Descriptive alt text (example in Chinese) -->
-      <img src="https://a.allegroimg.com/s720/11db03/4e80d8784cd581f47cba2b616e54/Naklejka-na-auto-wodoodporna-FUCK-YOU-PALEC-SRODEK.jpg" alt="黑色背景上的白色中指图案贴纸示例" loading="lazy">
+      <img src="https://a.allegroimg.com/s720/11db03/4e80d8784cd581f47cba2b616e54/Naklejka-na-auto-wodoodporna-FUCK-YOU-PALEC-SRODEK.jpg" alt="发克油" loading="lazy">
       <img src="https://s21.ax1x.com/2025/02/28/pE8Nr9K.md.png" alt="网络连接示意图概念图" loading="lazy">
       <img src="https://s21.ax1x.com/2025/02/28/pE8N44P.png" alt="Clash软件界面配置截图示例" loading="lazy">
     </section>
@@ -40,12 +57,8 @@
     <section class="content-section">
       <h2 class="section-title">资源链接</h2>
       <div class="link-list">
-        <!-- Added target="_blank" and rel="noopener noreferrer" for external links -->
         <div class="link-item"><a href="https://github.com/snakem982/proxypool/" target="_blank" rel="noopener noreferrer">Proxypool 项目主页</a></div>
-        <div class="link-item"><a href="https://raw.hellogithub.com/hosts" target="_blank" rel="noopener noreferrer">GitHub 加速Hosts</a></div>
-        <div class="link-item"><a href="https://clash.qszx.us.kg/qszx?clash" target="_blank" rel="noopener noreferrer">在线配置生成器</a></div>
-        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/snakem982/proxypool@main/source/clash-meta.yaml" target="_blank" rel="noopener noreferrer">Clash Meta 配置源</a></div>
-        <div class="link-item"><a href="https://jsdelivr.pai233.top/gh/ermaozi/get_subscribe@main/subscribe/clash.yml" target="_blank" rel="noopener noreferrer">订阅链接集合</a></div>
+        <div class="link-item"><a href="https://raw.hellogithub.com/hosts" target="_blank" rel="noopener noreferrer">GitHub 520加速Hosts</a></div>
         <div class="link-item"><a href="https://robin.nscl.ir/" target="_blank" rel="noopener noreferrer">Robin 节点服务</a></div>
         <div class="link-item"><a href="https://github.com/chen08209/FlClash" target="_blank" rel="noopener noreferrer">FlClash 客户端</a></div>
         <div class="link-item"><a href="https://gist.githubusercontent.com/CXK-Computer/3ba897b4a616950a5ec83f708e098535/raw/clash.yaml" target="_blank" rel="noopener noreferrer">唯一真神订阅链接集合</a></div>
@@ -54,7 +67,6 @@
 
     <section class="content-section">
       <h2 class="section-title">认证信息</h2>
-      <!-- Use code tag inside pre for semantic meaning -->
       <pre class="auth-info"><code>Github 2FA
 2f973-9d1f1
 8e37c-2c1e6
@@ -86,7 +98,6 @@ X回复码：5biy6siheuaj
     <section class="game-section">
       <h2 class="section-title">🎮 24点小游戏</h2>
       <div class="game-inputs">
-        <!-- Added labels (visually hidden for this layout) for accessibility -->
         <label for="num1" class="visually-hidden">数字1</label>
         <input type="number" id="num1" placeholder="数字1" min="1" max="13">
         <label for="num2" class="visually-hidden">数字2</label>
@@ -105,37 +116,19 @@ X回复码：5biy6siheuaj
     <p>&copy; 2025 Clash 配置中心</p>
   </footer>
 
-  <!-- Music Player: Removed autoplay for better UX -->
   <div id="music-player">
     <audio controls loop preload="metadata">
       <source src="https://api.vvhan.com/api/wyMusic/热歌榜" type="audio/mpeg">
-      您的浏览器不支持音频播放
     </audio>
   </div>
 
-  <!-- External utility scripts (snow, wave effects) - async keeps them non-blocking -->
-  <script async src="https://api.vvhan.com/api/script/snow"></script>
-  <script async src="https://api.vvhan.com/api/script/bolang"></script>
+  <div id="image-modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content">
+  </div>
 
-  <!-- Particle library -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-  <!-- Link to external JS - defer ensures it runs after HTML parsing -->
   <script src="script.js" defer></script>
 
-  <!-- Add CSS for visually hidden labels -->
-  <style>
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
 </body>
 </html>

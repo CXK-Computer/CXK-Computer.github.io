@@ -1,229 +1,220 @@
 /* START OF FILE style.css */
 
-/* --- Variables --- */
 :root {
-  --bg-color: #1f1f23; /* Slightly lighter dark */
-  --text-color: #e4e4e7; /* Slightly brighter text */
-  --text-color-muted: #a0a0a5; /* For less important text */
-  --accent-color: #00aef9; /* Slightly brighter cyan */
+  --bg-color: #1f1f23;
+  --text-color: #e4e4e7;
+  --text-color-muted: #a0a0a5;
+  --accent-color: #00aef9;
   --accent-gradient: linear-gradient(45deg, #00aef9, #00d4a0);
-  --section-bg: rgba(38, 38, 42, 0.85); /* Darker, slightly less transparent */
-  --section-border-radius: 12px; /* Consistent rounding */
-  --content-max-width: 850px; /* Slightly wider */
+  --section-bg-fallback: rgba(38, 38, 42, 0.92);
+  --section-border-radius: 12px;
+  --content-max-width: 850px;
   --shadow-color-light: rgba(0, 174, 249, 0.15);
   --shadow-color-dark: rgba(0, 0, 0, 0.3);
   --error-color: #ff6b6b;
   --success-color: #51cf66;
   --font-primary: 'Poppins', sans-serif;
   --font-code: 'Fira Code', monospace;
+  --music-player-bg: rgba(10, 10, 10, 0.75);
+  --music-player-bg-fallback: rgba(10, 10, 10, 0.85);
 }
-/* 低性能设备样式 */
-.low-performance {
-    --section-bg: rgba(38, 38, 42, 1); /* 移除透明度 */
-    
-    * {
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    .image-gallery img:hover {
-        transform: none !important;
-    }
+.clock{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+    margin: 30px auto 0px auto;
+    position: relative;
+    border:20px solid cornsilk;
+
 }
-/* 移动端全面降级 */
-@media (max-width: 768px) {
-    #particles-js {
-        display: none;
-    }
-    
-    .image-gallery {
-        grid-template-columns: 1fr;
-    }
-    
-    .link-item::before {
-        width: 35px !important;
-    }
+.center{
+    background-color: #000;
+    position: absolute;
+    left: calc(50% - 10px);
+    top:  calc(50% - 10px);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 20;
 }
-/* style.css中减少过渡范围 */
-* {
-    transition: color 0.3s ease, background-color 0.3s ease; /* 保留必要过渡 */
-    /* 移除border和box-shadow过渡 */
+.hourHand{
+    width: 10px;
+    height: 75px;
+    background-color: #000;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 75px;
+    left: 145px;
+    z-index: 10;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+      transform: rotate(360deg);
+
 }
-/* style.css中移除复杂变换 */
-.image-gallery img:hover {
-    transform: scale(1.02); /* 简化动画效果 */
-    filter: none;
-    /* 移除旋转和亮度变化 */
+.minuteHand{
+    width: 5px;
+    height: 120px;
+    background-color: #000;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 30px;
+    left: 147px;
+    z-index: 9;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+      transform: rotate(90deg);
+
 }
-/* style.css中 */
-#music-player {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: rgba(10, 10, 10, 0.95); /* 改用纯色背景 */
+.secondHand{
+    width: 2px;
+    height: 120px;
+    background-color:red;
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    top: 30px;
+    left: 149px;
+    transition: all 0.06s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    z-index: 8;  
+      transform: rotate(360deg);
+
+}
+.time{
+    position: absolute;
+    top: 45%;
+    left: 10%;
+    border: 1px solid #fff8dc;
+    background-color: #fff;
+    padding: 5px;
+    display: block;
+    box-shadow: inset 0px 2px 5px rgba(0,0,0,.4);
+    border-radius: 5px;
+    min-width: 70px;
+    height: 15px;
+
+}
+.time small{
+    color:red;
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
-header, main, footer, #time-container {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+.clock ul{
+    list-style: none;
+    padding: 0;
+
 }
+.clock ul li{
+    position: absolute;
+    width:20px;
+    height:20px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 10px;
+    color:red;
+}
+.clock ul li:nth-child(1){
+    right: 22%;
+    top:6.5%;
+}
+.clock ul li:nth-child(2){
+    right: 6%;
+    top:25%;
+}
+.clock ul li:nth-child(3){
+    right: 1%;
+    top:calc(50% - 10px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+.clock ul li:nth-child(4){
+    right: 6%;
+    top:69%;
+}
+.clock ul li:nth-child(5){
+    right: 22%;
+    top:84%;
+}
+.clock ul li:nth-child(6){
+    right: calc(50% - 10px);
+    top:calc(99% - 20px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+.clock ul li:nth-child(7){
+    left: 22%;
+    top:84%;
+}
+.clock ul li:nth-child(8){
+    left: 6%;
+    top:69%;
+}
+.clock ul li:nth-child(9){
+    left: 1%;
+    top:calc(50% - 10px);
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+.clock ul li:nth-child(10){
+    left: 6%;
+    top:25%;
+}
+.clock ul li:nth-child(11){
+    left: 22%;
+    top:6.5%;
+}
+.clock ul li:nth-child(12){
+    right: calc(50% - 10px);
+    top:1%;
+    color:#000;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .dark-mode {
-  /* Dark mode can have slightly different nuances if needed, */
-  /* but for this theme, the base vars work well for both day/night */
   --bg-color: #18181b;
   --text-color: #d4d4d8;
   --text-color-muted: #909095;
-  --section-bg: rgba(24, 24, 27, 0.9);
+  --section-bg-fallback: rgba(24, 24, 27, 0.95);
   --shadow-color-light: rgba(0, 174, 249, 0.2);
-}
-  --section-bg-fallback: rgba(38, 38, 42, 0.92); /* Fallback if backdrop-filter is removed */
-  --music-player-bg-fallback: rgba(10, 10, 10, 0.85);
-}
-
-/* ... (keep other base styles) ... */
-
-body {
-  /* ... existing styles ... */
-  /* Add class for script loading control */
+  --music-player-bg: rgba(5, 5, 5, 0.8);
+  --music-player-bg-fallback: rgba(5, 5, 5, 0.9);
 }
 
-body.disable-heavy-scripts .optional-script-element {
-    display: none; /* Example class to hide script containers if needed */
-}
-
-
-/* --- Layout Containers --- */
-header, main, footer, #time-container {
-  /* ... existing styles ... */
-  background: var(--section-bg-fallback); /* USE FALLBACK FIRST */
-  /* backdrop-filter: blur(12px); */ /* CRITICAL: Comment out or remove backdrop-filter for performance */
-  /* -webkit-backdrop-filter: blur(12px); */ /* CRITICAL: Comment out or remove */
-  box-shadow: 0 4px 15px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light); /* Keep shadow */
-  /* ... */
-}
-
-/* --- Image Gallery --- */
-.image-gallery img {
-  /* ... existing styles ... */
-  width: 100%;
-  height: auto; /* Let height adjust based on width and aspect ratio */
-  aspect-ratio: 16 / 10; /* EXAMPLE: Set aspect ratio if images might not load correctly - adjust ratio as needed */
-  object-fit: cover; /* Keep cover */
-  /* ... */
-}
-
-
-/* --- Music Player --- */
-#music-player {
-  /* ... existing styles ... */
-  background: var(--music-player-bg-fallback); /* USE FALLBACK */
-  backdrop-filter: blur(8px); /* Keep blur ONLY here if desired, it's smaller */
-  -webkit-backdrop-filter: blur(8px); /* Keep blur ONLY here */
-  /* ... */
-}
-/* Hide optional demanding scripts via CSS */
-.vvhan-snow, .vvhan-bolang { /* Selectors depend on how the scripts add elements */
-    /* Default: enabled */
-}
-
-
-/* --- Responsive Adjustments --- */
-
-/* Tablet Portrait & Large Phones */
-@media (max-width: 992px) {
-    :root { /* Slightly reduce padding/margins */
-        --content-max-width: 95%;
-    }
-    header, main, footer, #time-container {
-        padding: 25px;
-    }
-    header h1 { font-size: 2.5em; }
-    .section-title { font-size: 1.5em; }
-     /* Optimize particle JS - Less dense */
-     /* JS interaction needed here - see JS section below */
-}
-
-/* Tablet Portrait & Phones */
-@media (max-width: 768px) {
-    body {
-        padding: 15px;
-        padding-bottom: 160px; /* If music player visible */
-    }
-    header, main, footer, #time-container {
-        padding: 20px; /* Further reduce padding */
-    }
-    header h1 { font-size: 2.2em; }
-    #current-time { font-size: 1.6em; }
-    .section-title { font-size: 1.3em; }
-    .link-item { padding: 15px 20px 15px 50px; } /* Adjust padding */
-    .link-item a { font-size: 1.1em; }
-    .image-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
-    }
-    .game-inputs { gap: 10px; }
-    .game-inputs input { padding: 10px 6px; font-size: 1em;}
-    #check-btn { padding: 12px 30px; font-size: 1em; }
-
-    /* Hide demanding optional scripts */
-    .vvhan-snow, .vvhan-bolang {
-        display: none !important; /* Force hide */
-    }
-}
-
-/* Small Phones */
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-        padding-bottom: 30px; /* No music player */
-        line-height: 1.6; /* Slightly tighter line height */
-    }
-    header, main, footer, #time-container {
-        padding: 15px;
-    }
-    header h1 { font-size: 1.8em; }
-    .section-title { font-size: 1.2em; }
-    .link-item { padding: 12px 15px 12px 45px; }
-    .link-item a { font-size: 1em; }
-     .image-gallery { /* Stack images */
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .game-section { padding: 15px;} /* Less padding */
-    #music-player {
-        display: none; /* Hide music player */
-    }
-    /* Optionally hide Live2D widget on very small screens if it causes issues */
-    /* #live2d-widget { display: none; } */
-}
-
-/* --- Reset & Base --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-primary);
-  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 html {
-  scroll-behavior: smooth; /* Smooth scrolling for any anchor links */
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  line-height: 1.7; /* Slightly increased line height */
+  line-height: 1.7;
   padding: 25px;
-  /* Softer background pattern */
   background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 15px 15px;
   padding-bottom: 180px;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
 }
 
-/* --- Particle Background --- */
+body.modal-open {
+  overflow: hidden;
+}
+
 #particles-js {
   position: fixed;
   width: 100%;
@@ -231,44 +222,40 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  opacity: 0.7; /* Slightly less prominent particles */
+  opacity: 0.7;
 }
 
-/* --- Layout Containers --- */
 header, main, footer, #time-container {
   max-width: var(--content-max-width);
-  margin: 25px auto; /* Consistent vertical margin */
-  background: var(--section-bg);
-  padding: 35px; /* Increased padding */
+  margin: 25px auto;
+  background: var(--section-bg-fallback);
+  padding: 35px;
   border-radius: var(--section-border-radius);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 15px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light); /* Softer, layered shadow */
+  box-shadow: 0 4px 15px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light);
   position: relative;
   z-index: 1;
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.4s ease, box-shadow 0.3s ease;
 }
 
-/* --- Header --- */
 header h1 {
   color: var(--accent-color);
   text-align: center;
   margin-bottom: 25px;
-  font-size: 2.8em; /* Slightly larger */
+  font-size: 2.8em;
   font-weight: 600;
-  letter-spacing: 1px; /* Add some spacing */
+  letter-spacing: 1px;
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-  background: var(--accent-gradient); /* Apply gradient to text */
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent; /* Standard property */
+  text-fill-color: transparent;
 }
 
-/* --- Time Container --- */
 #time-container {
-  padding: 20px; /* Adjusted padding */
-  margin-top: 0; /* Align with top */
+  padding: 20px;
+  margin-top: 0;
 }
 #current-time {
   font-size: 2.2em;
@@ -282,28 +269,26 @@ header h1 {
   min-height: 1.3em;
 }
 
-/* --- Content Sections --- */
 .content-section {
-  margin: 35px 0; /* Increased spacing */
+  margin: 35px 0;
   padding: 25px;
-  background: rgba(0,0,0, 0.1); /* Subtle inner background */
-  border-radius: 10px; /* Slightly smaller radius inside */
+  background: rgba(0,0,0, 0.1);
+  border-radius: 10px;
   border-left: 5px solid;
-  border-image: var(--accent-gradient) 1; /* Gradient border */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); /* Inner shadow */
+  border-image: var(--accent-gradient) 1;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .section-title {
-  color: var(--accent-color); /* Match accent */
+  color: var(--accent-color);
   margin-bottom: 20px;
-  font-size: 1.6em; /* Larger titles */
+  font-size: 1.6em;
   font-weight: 600;
   padding-bottom: 8px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Subtle underline */
-  display: inline-block; /* Prevent underline spanning full width */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
 }
 
-/* --- Link List --- */
 .link-list {
   counter-reset: link-counter;
   list-style: none;
@@ -311,23 +296,23 @@ header h1 {
 
 .link-item {
   position: relative;
-  padding: 18px 25px 18px 60px; /* Increased padding */
+  padding: 18px 25px 18px 60px;
   margin: 18px 0;
-  background: rgba(40, 40, 45, 0.9); /* Slightly adjusted bg */
+  background: rgba(40, 40, 45, 0.9);
   border-radius: 10px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
-  overflow: hidden; /* Ensure pseudo-elements don't overflow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
 }
 
-.link-item::before { /* Counter styling */
+.link-item::before {
   counter-increment: link-counter;
   content: counter(link-counter);
   position: absolute;
-  left: 0; /* Align to the left edge */
+  left: 0;
   top: 0;
   bottom: 0;
-  width: 45px; /* Wider counter area */
-  background: var(--accent-gradient); /* Gradient background */
+  width: 45px;
+  background: var(--accent-gradient);
   color: #fff;
   display: flex;
   align-items: center;
@@ -335,39 +320,37 @@ header h1 {
   font-weight: 600;
   font-size: 1.1em;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease;
 }
 
 .link-item:hover {
-  transform: translateX(8px) scale(1.02); /* Add subtle scale */
+  transform: translateX(8px) scale(1.02);
   background-color: rgba(50, 50, 55, 0.95);
   box-shadow: 5px 5px 15px var(--shadow-color-dark);
 }
 
 .link-item:hover::before {
-   width: 50px; /* Expand counter slightly on hover */
+   width: 50px;
 }
 
 .link-item a {
-  color: #ade8f4; /* Slightly different link color */
+  color: #ade8f4;
   text-decoration: none;
   font-size: 1.15em;
-  font-weight: 400; /* Normal weight for links */
+  font-weight: 400;
   word-break: break-all;
   transition: color 0.3s ease;
   position: relative;
-  z-index: 1; /* Ensure link text is above potential background effects */
+  z-index: 1;
 }
 
 .link-item a:hover,
 .link-item a:focus {
-  color: #fff; /* Brighter hover color */
-  text-decoration: none; /* Keep no underline */
+  color: #fff;
 }
 
-/* --- Auth Info Block --- */
 .auth-info {
-  background: #001f29; /* Darker code background */
+  background: #001f29;
   padding: 25px;
   border-radius: 10px;
   margin: 35px 0;
@@ -375,68 +358,68 @@ header h1 {
   white-space: pre-wrap;
   word-wrap: break-word;
   border: 1px solid #00415a;
-  color: #c3dce8; /* Lighter code text */
+  color: #c3dce8;
   font-size: 0.95em;
   overflow-x: auto;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
 }
-.auth-info code { /* Explicitly style code tag if used */
-    display: block; /* Ensure block behavior */
+.auth-info code {
+    display: block;
 }
 
-/* --- Image Gallery --- */
 .image-gallery {
-  display: grid; /* Use grid for better control */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin: 30px 0;
 }
 
 .image-gallery img {
-  width: 100%; /* Grid handles width */
-  height: 200px; /* Increased height */
+  width: 100%;
+  height: 200px;
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 5px 15px var(--shadow-color-dark);
-  transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out, filter 0.35s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
   display: block;
-  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 .image-gallery img:hover {
-  transform: scale(1.05) rotate(1deg); /* Slight rotation on hover */
-  box-shadow: 0 8px 25px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light);
-  filter: brightness(1.1); /* Slight brightness increase */
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px var(--shadow-color-dark), 0 0 15px var(--shadow-color-light);
+  opacity: 1;
 }
 
-/* --- Game Section --- */
 .game-section {
-  background: var(--section-bg); /* Match main section background */
+  background: rgba(0,0,0, 0.1);
   padding: 30px;
-  border-radius: var(--section-border-radius);
+  border-radius: 10px;
   margin: 35px 0;
-  border: none; /* Remove duplicate border */
-  box-shadow: none; /* Remove duplicate shadow */
+  border: none;
+  box-shadow: none;
 }
 
 .game-inputs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  gap: 15px; /* Increased gap */
+  gap: 15px;
   margin: 20px 0;
 }
 
 .game-inputs input {
-  padding: 12px 8px; /* Increased padding */
-  border: 2px solid rgba(var(--accent-color), 0.5); /* Subtler border */
+  padding: 12px 8px;
+  border: 2px solid rgba(0, 174, 249, 0.5);
   border-radius: 8px;
-  background: rgba(10, 10, 10, 0.6); /* Darker input bg */
+  background: rgba(10, 10, 10, 0.6);
   color: var(--text-color);
   text-align: center;
   font-size: 1.1em;
   font-weight: 600;
   width: 100%;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   -moz-appearance: textfield;
 }
 .game-inputs input::-webkit-outer-spin-button,
@@ -453,16 +436,17 @@ header h1 {
   border-color: var(--accent-color);
   outline: none;
   box-shadow: 0 0 10px var(--shadow-color-light);
+  background: rgba(20, 20, 25, 0.7);
 }
 
 #check-btn {
-  background: var(--accent-gradient); /* Gradient background */
+  background: var(--accent-gradient);
   color: white;
   border: none;
-  padding: 14px 35px; /* Larger padding */
-  border-radius: 50px; /* Pill shape */
+  padding: 14px 35px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   display: block;
   margin: 25px auto 0;
   font-size: 1.1em;
@@ -473,7 +457,7 @@ header h1 {
 
 #check-btn:hover,
 #check-btn:focus {
-  transform: scale(1.05) translateY(-2px); /* More pronounced hover */
+  transform: scale(1.05) translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color-light);
   filter: brightness(1.1);
   outline: none;
@@ -485,60 +469,63 @@ header h1 {
   font-size: 1.2em;
   min-height: 1.6em;
   font-weight: 600;
-  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Added transform transition with bounce */
+  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-origin: center bottom;
 }
 #game-result.success,
-#game-result.error { /* Apply transform when class is added */
+#game-result.error {
     transform: scale(1.1);
 }
 #game-result.error {
   color: var(--error-color);
 }
 #game-result.success {
-  color: var(--success-color); /* Use success color variable */
+  color: var(--success-color);
 }
 
-/* --- Music Player --- */
 #music-player {
   position: fixed;
   bottom: 25px;
   right: 25px;
-  background: rgba(10, 10, 10, 0.75);
+  background: var(--music-player-bg);
   padding: 12px 18px;
-  border-radius: 50px; /* Pill shape */
+  border-radius: 50px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 15px var(--shadow-color-light);
   z-index: 10;
-  transition: all 0.3s ease-in-out; /* Transition all properties */
+  transition: all 0.3s ease-in-out, background-color 0.4s ease;
+}
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  #music-player {
+    background: var(--music-player-bg-fallback);
+  }
 }
 
 #music-player audio {
   display: block;
-  width: 220px; /* Slightly wider base */
-  height: 45px; /* Taller */
-  opacity: 0.8; /* Slightly transparent */
+  width: 220px;
+  height: 45px;
+  opacity: 0.8;
   transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 #music-player:hover,
-#music-player:focus-within { /* Expand on hover or focus within */
+#music-player:focus-within {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 20px var(--shadow-color-light);
 }
 
 #music-player:hover audio,
 #music-player:focus-within audio {
-  width: 280px; /* Wider on hover/focus */
-  opacity: 1; /* Fully opaque */
+  width: 280px;
+  opacity: 1;
 }
 
-/* --- Footer --- */
 footer {
   padding: 25px;
   margin-top: 40px;
-  background: rgba(10, 10, 10, 0.9); /* Darker footer */
-  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle top border */
+  background: rgba(10, 10, 10, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 footer p {
@@ -547,7 +534,6 @@ footer p {
   color: var(--text-color-muted);
 }
 
-/* --- Accessibility Helper --- */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -560,74 +546,142 @@ footer p {
   border: 0;
 }
 
-/* --- Responsive Adjustments --- */
+/* Image Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 85%;
+  animation: zoomIn 0.3s ease-in-out;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #bbb;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+@media (max-width: 992px) {
+    :root {
+        --content-max-width: 95%;
+    }
+    header, main, footer, #time-container {
+        padding: 25px;
+    }
+    header h1 { font-size: 2.5em; }
+    .section-title { font-size: 1.5em; }
+}
+
 @media (max-width: 768px) {
-  body {
-    padding: 15px;
-    padding-bottom: 160px;
-  }
-  header, main, footer, #time-container {
-    padding: 25px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-  header h1 {
-    font-size: 2.4em;
-  }
-  #current-time {
-    font-size: 1.8em;
-  }
-  .section-title {
-    font-size: 1.4em;
-  }
-  .link-item {
-      padding: 15px 20px 15px 55px;
-  }
-  .image-gallery {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust for smaller screens */
-      gap: 15px;
-  }
-  .image-gallery img {
-      height: 160px;
-  }
-  #music-player {
-      right: 15px;
-      bottom: 15px;
-      padding: 10px 15px;
-  }
-  #music-player audio {
-      width: 180px;
-      height: 40px;
-  }
-   #music-player:hover audio,
-   #music-player:focus-within audio {
-       width: 240px;
-   }
+    body {
+        padding: 15px;
+        padding-bottom: 160px;
+    }
+    #particles-js {
+        display: none;
+    }
+    header, main, footer, #time-container {
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    header h1 { font-size: 2.2em; }
+    #current-time { font-size: 1.8em; }
+    .section-title { font-size: 1.3em; }
+    .link-item { padding: 15px 20px 15px 55px; }
+    .link-item a { font-size: 1.1em; }
+    .link-item::before { width: 40px !important; }
+    .link-item:hover::before { width: 45px !important; }
+
+    .image-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    .image-gallery img {
+        height: 160px;
+    }
+    .game-inputs { gap: 10px; }
+    .game-inputs input { padding: 10px 6px; font-size: 1em;}
+    #check-btn { padding: 12px 30px; font-size: 1em; }
+
+    #music-player {
+        right: 15px;
+        bottom: 15px;
+        padding: 10px 15px;
+    }
+    #music-player audio {
+        width: 180px;
+        height: 40px;
+    }
+    #music-player:hover audio,
+    #music-player:focus-within audio {
+        width: 240px;
+    }
+    .vvhan-snow, .vvhan-bolang {
+        display: none !important;
+    }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 2em;
+    body {
+        padding: 10px;
+        padding-bottom: 30px;
+        line-height: 1.6;
     }
-    .section-title {
-        font-size: 1.3em;
+    header, main, footer, #time-container {
+        padding: 15px;
     }
-    .link-item a {
-        font-size: 1.05em;
+    header h1 { font-size: 1.8em; }
+    .section-title { font-size: 1.2em; }
+    .link-item { padding: 12px 15px 12px 45px; }
+    .link-item a { font-size: 1em; }
+     .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
-    .game-inputs input {
-        font-size: 1em;
-        padding: 10px 6px;
+    .game-section { padding: 15px;}
+    #music-player {
+        display: none;
     }
-    #check-btn {
-        padding: 12px 30px;
-        font-size: 1em;
-    }
-    #game-result {
-        font-size: 1.1em;
-    }
-     #music-player { display: none; } /* Optionally hide music player on very small screens */
-     body { padding-bottom: 50px; } /* Adjust padding if player hidden */
 }
+
 
 /* END OF FILE style.css */
