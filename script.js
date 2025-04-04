@@ -108,22 +108,7 @@ const hourHand = document.querySelector('.hourHand');
             }
             noticeEl.textContent = notice;
 
-            const isDarkModePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isNightTime = hour >= 19 || hour < 6;
-            if (isNightTime || isDarkModePreferred) {
-                bodyEl.classList.add('dark-mode');
-            } else {
-                bodyEl.classList.remove('dark-mode');
-            }
-        } catch (error) {
-            console.error("Error updating clock:", error);
-            timeEl.textContent = "--:--:--";
-            noticeEl.textContent = "时间加载出错";
-        }
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
+    
 
     const checkBtn = document.getElementById('check-btn');
     const gameInputs = document.querySelectorAll('.game-inputs input');
@@ -275,26 +260,7 @@ const hourHand = document.querySelector('.hourHand');
     }
     
 
-    if (window.innerWidth > 768 && !/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) {
-       if (!document.querySelector('script[src*="api.vvhan.com/api/script/snow"]')) {
-            const snow = document.createElement('script');
-            snow.src = 'https://api.vvhan.com/api/script/snow';
-            snow.async = true;
-            document.body.appendChild(snow);
-       }
-       if (!document.querySelector('script[src*="api.vvhan.com/api/script/bolang"]')) {
-            const bolang = document.createElement('script');
-            bolang.src = 'https://api.vvhan.com/api/script/bolang';
-            bolang.async = true;
-             document.body.appendChild(bolang);
-       }
-    } else {
-         const vvhanScripts = document.querySelectorAll('script[src*="api.vvhan.com/api/script/"]');
-         vvhanScripts.forEach(s => s.remove());
-         const vvhanElements = document.querySelectorAll('.vvhan-snow, .vvhan-bolang');
-         vvhanElements.forEach(el => el.remove());
-    }
-
+   
 });
 
 /* END OF FILE script.js */
