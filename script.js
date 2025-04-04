@@ -1,6 +1,14 @@
 /* START OF FILE script.js */
 
-document。addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const isLowPerfDevice = /(Android|webOS|iPhone).*AppleWebKit(?!.*Chrome)/.test(navigator.userAgent);
+if (isLowPerfDevice) {
+    document.documentElement.classList.add('low-performance');
+    document.querySelectorAll('.optional-effect').forEach(el => el.remove());
+}
+
+    
+        
 
     // --- Particle Effects ---
     const particlesContainer = document.getElementById('particles-js');
@@ -41,6 +49,9 @@ document。addEventListener('DOMContentLoaded', () => {
     } else {
         console.warn("particles.js library not loaded or container not found.");
     }
+    
+    
+    
 
   // --- Live2D Widget Loader ---
   // Check if the widget script is already loaded (e.g., by direct script tag)
@@ -73,6 +84,21 @@ document。addEventListener('DOMContentLoaded', () => {
   } else {
     console.warn("particles.js library not loaded.");
   }
+if (window.innerWidth > 768 && !/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) {
+    const snow = document.createElement('script');
+    snow.src = 'https://api.vvhan.com/api/script/snow';
+    document.body.appendChild(snow);
+}
+// script.js中修改粒子配置
+if (window.innerWidth <= 768) {
+    particleCount = 15; // 进一步减少粒子数量
+    enableInteractivity = false;
+} else {
+    particleCount = 50; // 桌面端也适当减少
+}
+
+// 降低粒子运动速度
+move: { enable: true, speed: 1.5, ... }
 if (window.innerWidth <= 768) {
         // Example: If snow script adds a canvas with id="snow-canvas"
         const snowCanvas = document.getElementById('snow-canvas');

@@ -17,7 +17,55 @@
   --font-primary: 'Poppins', sans-serif;
   --font-code: 'Fira Code', monospace;
 }
+/* 低性能设备样式 */
+.low-performance {
+    --section-bg: rgba(38, 38, 42, 1); /* 移除透明度 */
+    
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    .image-gallery img:hover {
+        transform: none !important;
+    }
+}
+/* 移动端全面降级 */
+@media (max-width: 768px) {
+    #particles-js {
+        display: none;
+    }
+    
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .link-item::before {
+        width: 35px !important;
+    }
+}
+/* style.css中减少过渡范围 */
+* {
+    transition: color 0.3s ease, background-color 0.3s ease; /* 保留必要过渡 */
+    /* 移除border和box-shadow过渡 */
+}
+/* style.css中移除复杂变换 */
+.image-gallery img:hover {
+    transform: scale(1.02); /* 简化动画效果 */
+    filter: none;
+    /* 移除旋转和亮度变化 */
+}
+/* style.css中 */
+#music-player {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(10, 10, 10, 0.95); /* 改用纯色背景 */
+}
 
+header, main, footer, #time-container {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
 .dark-mode {
   /* Dark mode can have slightly different nuances if needed, */
   /* but for this theme, the base vars work well for both day/night */
