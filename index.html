@@ -13,37 +13,46 @@
 <body>
 
   <div id="particles-js"></div>
-  
 
+  <!-- Included Live2D widget only once -->
   <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
-</div>
-        <div class="clock">
-        <div class="hourHand"></div>
-        <div class="minuteHand"></div>
-        <div class="secondHand"></div>
-        <div class="center"></div>
-        <div class="time"></div>
-        <ul>
-            <li><span>1</span></li>
-            <li><span>2</span></li>
-            <li><span>3</span></li>
-            <li><span>4</span></li>
-            <li><span>5</span></li>
-            <li><span>6</span></li>
-            <li><span>7</span></li>
-            <li><span>8</span></li>
-            <li><span>9</span></li>
-            <li><span>10</span></li>
-            <li><span>11</span></li>
-            <li><span>12</span></li>
-        </ul>
-    </div>
+
+  <div class="clock">
+    <div class="hourHand"></div>
+    <div class="minuteHand"></div>
+    <div class="secondHand"></div>
+    <div class="center"></div>
+    <!-- Digital time inside the analog clock seems redundant if you have #current-time below.
+         Consider removing this div class="time" if #current-time provides the main display.
+         If keeping it, ensure its update logic is correct in JS (currently it's in setDate). -->
+    <div class="time"></div>
+    <ul>
+      <li><span>1</span></li>
+      <li><span>2</span></li>
+      <li><span>3</span></li>
+      <li><span>4</span></li>
+      <li><span>5</span></li>
+      <li><span>6</span></li>
+      <li><span>7</span></li>
+      <li><span>8</span></li>
+      <li><span>9</span></li>
+      <li><span>10</span></li>
+      <li><span>11</span></li>
+      <li><span>12</span></li>
+    </ul>
+  </div>
 
   <header>
     <h1>🔗 Clash 配置中心</h1>
   </header>
 
   <main>
+     <!-- Added #time-container for digital time -->
+    <div id="time-container">
+      <div id="current-time">--:--:--</div>
+      <div id="time-notice">Loading...</div>
+    </div>
+
     <section class="image-gallery" aria-label="配置预览图">
       <img src="https://a.allegroimg.com/s720/11db03/4e80d8784cd581f47cba2b616e54/Naklejka-na-auto-wodoodporna-FUCK-YOU-PALEC-SRODEK.jpg" alt="发克油" loading="lazy">
       <img src="https://s21.ax1x.com/2025/02/28/pE8Nr9K.md.png" alt="网络连接示意图概念图" loading="lazy">
@@ -111,21 +120,14 @@ X回复码：5biy6siheuaj
   <footer>
     <p>&copy; 2025 Clash 配置中心</p>
   </footer>
-  <style type="text/css">
-    body{
-        background: url("https://api.dujin.org/bing/m.php") no-repeat center center fixed;
-        //兼容浏览器版本
-        -webkit-background-size: cover;
-        -o-background-size: cover;
-        //把背景图片放大到适合元素容器的尺寸         
-        background-size: cover;
-        }
-  </style>
-  <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>.
+
+  <!-- Removed inline style for background -->
+  <!-- <style type="text/css"> ... </style> -->
 
   <div id="music-player">
     <audio controls loop preload="metadata">
       <source src="https://api.vvhan.com/api/wyMusic/热歌榜" type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
   </div>
 
