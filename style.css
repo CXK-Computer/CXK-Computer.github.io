@@ -75,12 +75,13 @@
     position: absolute;
     top: 30px;
     left: 149px;
-    transition: all 0.06s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
-    z-index: 8;  
-      transform: rotate(360deg);
-
+    transition: transform 0.06s; /* Apply transition only to transform */
+    /* transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1); */ /* REMOVE or COMMENT OUT this */
+    transition-timing-function: linear; /* USE simple linear timing */
+    z-index: 8;
+    /* transform: rotate(360deg);  <- This initial transform was likely removed, which is good */
 }
+
 .time{
     position: absolute;
     top: 45%;
